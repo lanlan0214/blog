@@ -1,0 +1,29 @@
+npm add react-router-dom
+
+app.js蓋過去
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <div>This is Home!</div>,
+  },
+  {
+    path: "/test",
+    element: <div>This is test!</div>,
+  },
+]);
+
+function App() {
+  return (
+    <div>
+      <RouterProvider router={router}/>
+    </div>
+  );
+}
+
+export default App;
