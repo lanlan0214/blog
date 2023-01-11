@@ -32,3 +32,7 @@ export default App;
 下面是增加scss 用法的
 npm add sass
 npm i sass
+
+使用到Link from react-router-dom
+
+menu 做法跟home差不多~
