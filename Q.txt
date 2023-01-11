@@ -36,3 +36,5 @@ npm i sass
 使用到Link from react-router-dom
 
 menu 做法跟home差不多~
+
+write 那頁有使用到 liberary react-quill

@@ -22,6 +22,7 @@ const Layout = () => {
   )
 }
 
+// 這裡是在 react-router 裡的範例有 https://reactrouter.com/en/main/start/tutorial
 const router = createBrowserRouter([
   {
     path: "/",
