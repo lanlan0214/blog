@@ -13,17 +13,17 @@ const Navbar = () => {
           <Link className='link' to="/?cat=art">
             <h6>ART</h6>
           </Link>
-          <Link className='link' to="/?cat=art">
-            <h6>ART</h6>
+          <Link className='link' to="/?cat=food">
+            <h6>FOOD</h6>
           </Link>
-          <Link className='link' to="/?cat=art">
-            <h6>ART</h6>
+          <Link className='link' to="/?cat=learn">
+            <h6>LEARN</h6>
           </Link>
-          <Link className='link' to="/?cat=art">
-            <h6>ART</h6>
+          <Link className='link' to="/?cat=game">
+            <h6>GAME</h6>
           </Link>
-          <Link className='link' to="/?cat=art">
-            <h6>ART</h6>
+          <Link className='link' to="/?cat=project">
+            <h6>PROJECT</h6>
           </Link>
           <span>Frank</span>
           <span>登出</span>

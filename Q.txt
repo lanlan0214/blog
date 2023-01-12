@@ -38,3 +38,23 @@ npm i sass
 menu 做法跟home差不多~
 
 write 那頁有使用到 liberary react-quill
+
+api - npm init -y
+liberary npm add express mysql nodemon
+
+script
+change start nodemon index.js
+add type: module
+
+index.js
+import express from "express"
+
+const app = express()
+
+app.use(express.json())
+
+app.listen(8800, () => {
+  console.log("Connected!")
+})
+
+然後npm start 可以測試有沒有成功~
