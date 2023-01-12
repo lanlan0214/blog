@@ -40,7 +40,7 @@ menu 做法跟home差不多~
 write 那頁有使用到 liberary react-quill
 
 api - npm init -y
-liberary npm add express mysql nodemon
+liberary: npm add express mysql nodemon
 
 script
 change start nodemon index.js
@@ -58,3 +58,9 @@ app.listen(8800, () => {
 })
 
 然後npm start 可以測試有沒有成功~
+
+api 用 mysql ~
+
+然後設置
+
+posts跟post call function
