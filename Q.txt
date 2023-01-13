@@ -64,3 +64,27 @@ api 用 mysql ~
 然後設置
 
 posts跟post call function
+
+資聊夾routes跟controllers 做連動
+
+api add new libarary
+
+npm add bcryptjs
+
+clinet add new libarary
+
+npm add axios
+
+packjson add new
+proxy: 'http://localhost:8800/api'
+
+都設定好後 要重新啟動clinet端 不然會失敗~ 
+1.16.57
+
+如果mysql跟nodejs沒有連接上的話
+在mysql cmd 那裏 打這段
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456789';
+然後db密碼改123456789
+應該就可行了
+
+註冊帳號後轉至登入帳號區~ 
