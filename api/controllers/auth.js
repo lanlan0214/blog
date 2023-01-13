@@ -1,6 +1,6 @@
 import { db } from '../db.js'
 import bcrypt from 'bcryptjs'
-import Jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 export const register = (req, res) => {
 
@@ -40,7 +40,7 @@ export const login = (req, res) => {
     if (!isPasswordCorrect) return res.status(400).json("帳號或是密碼有錯誤!")
 
     // 確認網頁的cookies 跟 mysql裡面的資料有沒有一樣有一樣 才能刪除類似這個意思
-    const token = Jwt.sign({ id: data[0].id }, "jwtkey")
+    const token = jwt.sign({ id: data[0].id }, "jwtkey")
 
     const { password, ...other } = data[0]
 
@@ -52,5 +52,8 @@ export const login = (req, res) => {
 }
 
 export const logout = (req, res) => {
-
+  res.clearCookie("access_token", {
+    sameSite: "none",
+    secure: true
+  }).status(200).json("User has been logged out.")
 }

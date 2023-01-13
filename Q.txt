@@ -88,3 +88,14 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '12345678
 應該就可行了
 
 註冊帳號後轉至登入帳號區~ 
+
+api add
+npm add jsonwebtoken (為了帳號安全~)
+
+api add
+npm add cookie-parser
+
+帳號可以登入後轉到主頁面
+新增authcontext 
+設置了 localstorage 然後帳號名稱跟著帳號更改Navbar部分
+然後設置 logout 會到 login畫面
