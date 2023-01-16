@@ -103,3 +103,16 @@ npm add cookie-parser
 add post, getpost , deletepost, updatepost
 
 需注意posts 裡面的SELECT * FROM posts 這邊如果輸入錯誤的話 mysql 不會導入
+
+client add
+npm add moment
+
+修改 home 可以用於mysql資料 然後改變裡面數值
+
+api add
+npm add multer
+
+Write 頁面
+
+client add
+npm add dompurify

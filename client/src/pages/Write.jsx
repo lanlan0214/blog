@@ -1,65 +1,116 @@
-import React, { useState } from 'react'
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-
-// 這一頁新增了 react-quill 如不清楚就console.log(value);
+import React, { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const Write = () => {
-  const [value, setValue] = useState('');
+  const state = useLocation().state;
+  const [value, setValue] = useState(state?.title || "");
+  const [title, setTitle] = useState(state?.desc || "");
+  const [file, setFile] = useState(null);
+  const [cat, setCat] = useState(state?.cat || "");
 
-  // console.log(value); 顯入內容案的東西~
+  const navigate = useNavigate()
+
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await axios.post("/upload", formData);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const imgUrl = await upload();
+
+    try {
+      state
+        ? await axios.put(`/posts/${state.id}`, {
+          title,
+          desc: value,
+          cat,
+          img: file ? imgUrl : "",
+        })
+        : await axios.post(`/posts/`, {
+          title,
+          desc: value,
+          cat,
+          img: file ? imgUrl : "",
+          date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+        });
+      navigate("/")
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <div className='add'>
+    <div className="add">
       <div className="content">
-        <input type="text" placeholder='Title' />
+        <input
+          type="text"
+          placeholder="Title"
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <div className="editorContainer">
-          <ReactQuill className='editor' theme="snow" value={value} onChange={setValue} />
+          <ReactQuill
+            className="editor"
+            theme="snow"
+            value={value}
+            onChange={setValue}
+          />
         </div>
       </div>
       <div className="menu">
         <div className="item">
-          <h1>發布</h1>
+          <h1>Publish</h1>
           <span>
-            <b>狀態: </b> 草稿
+            <b>Status: </b> Draft
           </span>
           <span>
-            <b>能見度: </b> 公共
+            <b>Visibility: </b> Public
           </span>
-          <input style={{ display: "none" }} type="file" id='file' name='' />
-          <label className='file' htmlFor="file">上傳圖片</label>
+          <input style={{ display: "none" }} type="file" id="file" name="" onChange={(e) => setFile(e.target.files[0])} />
+          <label className="file" htmlFor="file">
+            Upload Image
+          </label>
           <div className="buttons">
-            <button>保存</button>
-            <button>更新</button>
+            <button>Save as a draft</button>
+            <button onClick={handleClick}>Publish</button>
           </div>
         </div>
         <div className="item">
-          <h1>分類</h1>
-          {/* 這邊是navbar相關的 */}
+          <h1>Category</h1>
           <div className="cat">
-            <input type="radio" name='cat' value="art" id='art' />
+            <input type="radio" checked={cat === "art"} name="cat" value="art" id="art" onChange={(e) => setCat(e.target.value)} />
             <label htmlFor="art">Art</label>
           </div>
           <div className="cat">
-            <input type="radio" name='cat' value="food" id='food' />
+            <input type="radio" checked={cat === "food"} name="cat" value="food" id="food" onChange={(e) => setCat(e.target.value)} />
             <label htmlFor="food">Food</label>
           </div>
           <div className="cat">
-            <input type="radio" name='cat' value="learn" id='learn' />
+            <input type="radio" checked={cat === "learn"} name="cat" value="learn" id="learn" onChange={(e) => setCat(e.target.value)} />
             <label htmlFor="learn">Learn</label>
           </div>
           <div className="cat">
-            <input type="radio" name='cat' value="game" id='game' />
+            <input type="radio" checked={cat === "game"} name="cat" value="game" id="game" onChange={(e) => setCat(e.target.value)} />
             <label htmlFor="game">Game</label>
           </div>
           <div className="cat">
-            <input type="radio" name='cat' value="project" id='project' />
+            <input type="radio" checked={cat === "project"} name="cat" value="project" id="project" onChange={(e) => setCat(e.target.value)} />
             <label htmlFor="project">Project</label>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Write
+export default Write;

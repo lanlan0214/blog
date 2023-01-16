@@ -7,6 +7,7 @@ import axios from 'axios'
 import moment from "moment"
 import { useContext } from 'react'
 import { AuthContext } from '../context/authContext'
+import DOMPurify from "dompurify";
 
 
 const Single = () => {
@@ -30,7 +31,7 @@ const Single = () => {
       }
     }
     fetchData();
-  }, [])
+  }, [postId])
 
   const handleDelete = async () => {
     try {
@@ -44,7 +45,7 @@ const Single = () => {
   return (
     <div className='single'>
       <div className="content">
-        <img src={post?.img} alt="" />
+        <img src={`../upload/${post?.img}`} alt="" />
         <div className="user">
           {post.userImg && <img src={post.userImg} alt="" />}
           <div className="info">
@@ -52,16 +53,20 @@ const Single = () => {
             <p>發布於{moment(post.date).fromNow()}</p>
           </div>
           {currentUser.username === post.username && <div className="edit">
-            <Link to={`/write?edit=2`}>
+            <Link to={`/write?edit=2`} state={post}>
               <img src={Edit} alt="" />
             </Link>
             <img onClick={handleDelete} src={Delete} alt="" />
           </div>}
         </div>
         <h1>{post.title}</h1>
-        {post.desc}
+        <p
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(post.desc),
+          }}
+        ></p>
       </div>
-      <Menu />
+      <Menu cat={post.cat} />
     </div>
   )
 }
