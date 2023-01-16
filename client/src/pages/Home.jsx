@@ -1,27 +1,46 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import axios from "axios"
 
 const Home = () => {
-  const posts = [
-    {
-      id: 1,
-      title: "let's go",
-      desc: "ok let's go",
-      img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 2,
-      title: "let's go",
-      desc: "ok let's go",
-      img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 3,
-      title: "let's go",
-      desc: "ok let's go",
-      img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  const [posts, setPosts] = useState([])
+
+  const cat = useLocation().search
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/posts${cat}`)
+        setPosts(res.data)
+      } catch (err) {
+        console.log(err)
+      }
     }
-  ]
+    fetchData();
+  }, [cat])
+
+  // const posts = [
+  //   {
+  //     id: 1,
+  //     title: "let's go",
+  //     desc: "ok let's go",
+  //     img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "let's go",
+  //     desc: "ok let's go",
+  //     img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "let's go",
+  //     desc: "ok let's go",
+  //     img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  //   }
+  // ]
 
   return (
     <div className='home'>

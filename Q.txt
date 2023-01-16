@@ -99,3 +99,7 @@ npm add cookie-parser
 新增authcontext 
 設置了 localstorage 然後帳號名稱跟著帳號更改Navbar部分
 然後設置 logout 會到 login畫面
+
+add post, getpost , deletepost, updatepost
+
+需注意posts 裡面的SELECT * FROM posts 這邊如果輸入錯誤的話 mysql 不會導入
