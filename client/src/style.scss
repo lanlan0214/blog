@@ -125,6 +125,7 @@ $lightGreen : #b9e7e7;
       img {
         height: 50px;
       }
+
     }
 
     // Home
@@ -379,6 +380,7 @@ $lightGreen : #b9e7e7;
               padding: 3px 5px;
             }
           }
+
           .cat {
             display: flex;
             align-items: center;
@@ -387,6 +389,14 @@ $lightGreen : #b9e7e7;
           }
         }
       }
+    }
+  }
+
+  // RWD
+  @media screen and (max-width: 1024px) {
+    .container {
+      width: 100%;
+
     }
   }
 }
